@@ -9,18 +9,17 @@
     var CurrentState;
     var ScoreBoard;
     var Manifest = [
-        { id: "StartButton", src: "/Assets/images/StartButton.png" },
+        { id: "StartButton", src: "/Assets/images/playBtn.png" },
         { id: "NextButton", src: "/Assets/images/instructionBtn.png" },
-        { id: "BackButton", src: "/Assets/images/BackButton.png" },
+        { id: "BackButton", src: "/Assets/images/replayBtn.png" },
         { id: "plane", src: "/Assets/images/doodle.png" },
-        { id: "island", src: "/Assets/images/island.png" },
+        { id: "island", src: "/Assets/images/monster.png" },
         { id: "ocean", src: "/Assets/images/dark.png" },
-        { id: "cloud", src: "/Assets/images/coin01.png" },
+        { id: "cloud", src: "/Assets/images/fireball.png" },
         { id: "bullet", src: "/Assets/images/bullet.png" },
-        { id: "yay", src: "/Assets/audio/yay.ogg" },
-        { id: "thunder", src: "/Assets/audio/thunder.ogg" },
-        { id: "engine", src: "/Assets/audio/engine.ogg" },
-        { id: "explosion", src: "/Assets/audio/explosion.mp3" }
+        { id: "yay", src: "/Assets/audio/ouch.mp3" },
+        { id: "thunder", src: "/Assets/audio/collision.mp3" },
+        { id: "explosion", src: "/Assets/audio/hit.mp3" }
     ];
     function Init() {
         console.log("%c Assets Loading...", "font-weight:bold; font-size:20px; color: green;");

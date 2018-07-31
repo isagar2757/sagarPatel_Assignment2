@@ -25,6 +25,12 @@ var scenes;
                 //this._clouds[count] = new objects.Cloud();
             }
         };
+        Play.prototype._buildBullets = function () {
+            for (var count = 0; count < this._cloudNum; count++) {
+                this._bullets.push(new objects.Bullet());
+                //this._clouds[count] = new objects.Cloud();
+            }
+        };
         // public methods
         Play.prototype.Start = function () {
             this._plane = new objects.Plane();
@@ -33,7 +39,9 @@ var scenes;
             this._cloudNum = 5;
             // create an empty Array List-like object of clouds
             this._clouds = new Array();
+            this._bullets = new Array();
             this._buildClouds();
+            this._buildBullets();
             this.Main();
         };
         Play.prototype.Update = function () {
@@ -45,6 +53,26 @@ var scenes;
             this._clouds.forEach(function (cloud) {
                 cloud.Update();
                 managers.Collision.check(_this._plane, cloud);
+            });
+            this._bullets.forEach(function (bullet) {
+                _this._clouds.forEach(function (cloud) {
+                    //cloud.Update();
+                    managers.Collision.check(cloud, bullet);
+                    if (bullet.isColliding) {
+                        _this.removeChild(cloud);
+                        // this.addChild(cloud);
+                        _this.removeChild(bullet);
+                    }
+                });
+                bullet.Update();
+                if (bullet.isColliding) {
+                    //this.removeChild(cloud);
+                    for (var _i = 0, _a = _this._clouds; _i < _a.length; _i++) {
+                        var cloud = _a[_i];
+                        _this.addChild(cloud);
+                    }
+                    _this.addChild(bullet);
+                }
             });
         };
         Play.prototype.Reset = function () {
@@ -64,6 +92,10 @@ var scenes;
             for (var _i = 0, _a = this._clouds; _i < _a.length; _i++) {
                 var cloud = _a[_i];
                 this.addChild(cloud);
+            }
+            for (var _b = 0, _c = this._bullets; _b < _c.length; _b++) {
+                var bullet = _c[_b];
+                this.addChild(bullet);
             }
         };
         return Play;

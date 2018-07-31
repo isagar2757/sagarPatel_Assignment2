@@ -6,7 +6,7 @@ module objects {
 
         // constructors
         constructor() {
-            super("cloud");
+            super("bullet");
 
             this.Start();
         }
@@ -17,9 +17,10 @@ module objects {
             // if(this.y >= (config.Screen.HEIGHT + this.height)) {
             //     this.Reset();
             // }
-            if(this.x <= (0)) {
-                 this.Start();
-                 }
+            if(this.x > (config.Screen.WIDTH - this.halfWidth)) {
+                this.x = config.Screen.WIDTH - this.halfWidth;
+                this.Start();
+            }
             
 
         }
@@ -27,22 +28,25 @@ module objects {
          // public methods
          public Start():void {
             
-this.x = config.Screen.WIDTH;
+        this.x = 15;
             this.Reset();
         }
 
         public Update():void {
-            this.x -= this._horizontalSpeed;
+            this.x += this._horizontalSpeed;
            // this.y += this._verticalSpeed;
+           this.regX = this.halfWidth;
+            this.regY = this.halfHeight;
+           // this.y = managers.Game.Stage.mouseY;
             
             this._checkBounds();
         }
 
         public Reset():void {
            // this._verticalSpeed = Math.floor(Math.random() * 5) + 5;
-            this._horizontalSpeed = Math.floor(Math.random() * 5) + 2;
-            this.y = Math.floor(Math.random() * (config.Screen.HEIGHT - this.height)) + this.halfHeight;
-           // this.x -= this.width;
+            this._horizontalSpeed = 10;
+            this.y = managers.Game.Stage.mouseY;
+           // this.x += this.width;
         }
     }
 }

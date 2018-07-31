@@ -14,7 +14,7 @@ var objects;
         __extends(Bullet, _super);
         // constructors
         function Bullet() {
-            var _this = _super.call(this, "cloud") || this;
+            var _this = _super.call(this, "bullet") || this;
             _this.Start();
             return _this;
         }
@@ -24,25 +24,29 @@ var objects;
             // if(this.y >= (config.Screen.HEIGHT + this.height)) {
             //     this.Reset();
             // }
-            if (this.x <= (0)) {
+            if (this.x > (config.Screen.WIDTH - this.halfWidth)) {
+                this.x = config.Screen.WIDTH - this.halfWidth;
                 this.Start();
             }
         };
         // public methods
         Bullet.prototype.Start = function () {
-            this.x = config.Screen.WIDTH;
+            this.x = 15;
             this.Reset();
         };
         Bullet.prototype.Update = function () {
-            this.x -= this._horizontalSpeed;
+            this.x += this._horizontalSpeed;
             // this.y += this._verticalSpeed;
+            this.regX = this.halfWidth;
+            this.regY = this.halfHeight;
+            // this.y = managers.Game.Stage.mouseY;
             this._checkBounds();
         };
         Bullet.prototype.Reset = function () {
             // this._verticalSpeed = Math.floor(Math.random() * 5) + 5;
-            this._horizontalSpeed = Math.floor(Math.random() * 5) + 2;
-            this.y = Math.floor(Math.random() * (config.Screen.HEIGHT - this.height)) + this.halfHeight;
-            // this.x -= this.width;
+            this._horizontalSpeed = 10;
+            this.y = managers.Game.Stage.mouseY;
+            // this.x += this.width;
         };
         return Bullet;
     }(objects.GameObject));

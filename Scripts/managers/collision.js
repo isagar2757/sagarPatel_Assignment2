@@ -16,6 +16,9 @@ var managers;
                         case "cloud":
                             createjs.Sound.play("thunder");
                             break;
+                        case "bullet":
+                            createjs.Sound.play("explosion");
+                            break;
                     }
                 }
             }

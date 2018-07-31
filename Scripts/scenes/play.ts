@@ -8,6 +8,7 @@ module scenes {
        
         private _cloudNum:number;
         private _clouds:objects.Cloud[];
+        private _bullets:objects.Bullet[];
       
 
         // constructors
@@ -26,7 +27,13 @@ module scenes {
             }
         }
 
-       
+        private _buildBullets():void {
+            for (let count = 0; count < this._cloudNum; count++) {
+                this._bullets.push(new objects.Bullet());
+                //this._clouds[count] = new objects.Cloud();
+                
+            }
+        }
 
 
       
@@ -40,7 +47,9 @@ module scenes {
             this._cloudNum = 5;
             // create an empty Array List-like object of clouds
             this._clouds = new Array<objects.Cloud>();
+            this._bullets = new Array<objects.Bullet>();
             this._buildClouds();
+            this._buildBullets();
 
             this.Main();
         }
@@ -55,6 +64,29 @@ module scenes {
             this._clouds.forEach(cloud => {
                 cloud.Update();
                 managers.Collision.check(this._plane, cloud);
+            });
+
+            this._bullets.forEach(bullet => {
+                this._clouds.forEach(cloud => {
+                    //cloud.Update();
+                    managers.Collision.check(cloud,bullet);
+                    
+                    if(bullet.isColliding){
+                        this.removeChild(cloud);
+                       // this.addChild(cloud);
+                        this.removeChild(bullet);
+                    }
+                    
+                });
+                bullet.Update();
+                if(bullet.isColliding){
+                    //this.removeChild(cloud);
+                    for (const cloud of this._clouds) {
+                        this.addChild(cloud);
+                    }
+                   this.addChild(bullet);
+                }
+                
             });
 
            
@@ -83,6 +115,10 @@ module scenes {
             // add the Cloud(s) to the scene
             for (const cloud of this._clouds) {
                 this.addChild(cloud);
+            }
+
+            for (const bullet of this._bullets) {
+                this.addChild(bullet);
             }
 
            

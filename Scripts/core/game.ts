@@ -16,9 +16,12 @@
         {id: "island", src:"/Assets/images/island.png"},
         {id: "ocean", src:"/Assets/images/dark.png"},
         {id: "cloud", src:"/Assets/images/coin01.png"},
+        {id: "bullet", src:"/Assets/images/bullet.png"},
         {id: "yay", src:"/Assets/audio/yay.ogg"},
         {id: "thunder", src:"/Assets/audio/thunder.ogg"},
-        {id: "engine", src:"/Assets/audio/engine.ogg"}
+        {id: "engine", src:"/Assets/audio/engine.ogg"},
+        {id: "explosion", src:"/Assets/audio/explosion.mp3"}
+        
     ]
 
 

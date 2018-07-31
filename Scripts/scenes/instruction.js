@@ -36,6 +36,7 @@ var scenes;
         };
         Instruction.prototype.Main = function () {
             console.log("Instruction - INST SCENE");
+            this.addChild(this._ocean);
             this.addChild(this.line1);
             this.addChild(this.line2);
             this.addChild(this.line3);

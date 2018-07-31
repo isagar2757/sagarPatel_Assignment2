@@ -5,6 +5,7 @@ module scenes {
         private line2: objects.Label;
         private line3: objects.Label;
         private _startButton: objects.Button;
+        private _ocean: objects.Ocean;
 
         // constructors
         constructor() {
@@ -40,6 +41,7 @@ module scenes {
 
         public Main():void {
             console.log("Instruction - INST SCENE");
+            this.addChild(this._ocean);
             this.addChild(this.line1);
             this.addChild(this.line2);
             this.addChild(this.line3);

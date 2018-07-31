@@ -38,6 +38,7 @@ var scenes;
             this.addChild(this._welcomeLabel);
             this.addChild(this._startButton);
             this.addChild(this._instructionButton);
+            this.addChild(this._ocean);
             this._startButton.on("click", function () {
                 managers.Game.CurrentState = config.Scene.PLAY;
             }, this);

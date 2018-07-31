@@ -101,6 +101,8 @@ var scenes;
                 var bullet = _c[_b];
                 this.addChild(bullet);
             }
+            this.addChild(managers.Game.scoreBoard.LivesLabel);
+            this.addChild(managers.Game.scoreBoard.ScoreLabel);
         };
         return Play;
     }(objects.Scene));

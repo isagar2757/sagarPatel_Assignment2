@@ -8,8 +8,9 @@ module scenes {
        
         private _cloudNum:number;
         private _clouds:objects.Cloud[];
-        private _cloud:objects.Cloud;
+       
         private _bullets:objects.Bullet[];
+       
       
 
         // constructors
@@ -51,7 +52,7 @@ module scenes {
             this._bullets = new Array<objects.Bullet>();
             this._buildClouds();
             this._buildBullets();
-
+           
             this.Main();
         }
 
@@ -101,6 +102,8 @@ module scenes {
                             this.addChild(bullet);
             });
 
+            
+
            
         }
 
@@ -132,7 +135,8 @@ module scenes {
             for (const bullet of this._bullets) {
                 this.addChild(bullet);
             }
-
+            this.addChild(managers.Game.scoreBoard.LivesLabel);
+            this.addChild(managers.Game.scoreBoard.ScoreLabel);
            
         }
 

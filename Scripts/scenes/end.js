@@ -34,9 +34,12 @@ var scenes;
         };
         End.prototype.Main = function () {
             console.log("Started - END SCENE");
+            this.addChild(this._ocean);
             this.addChild(this._endLabel);
             this.addChild(this._backButton);
+            this.addChild(managers.Game.scoreBoard.HighScoreLabel);
             this._backButton.on("click", function () {
+                managers.Game.scoreBoard.Reset();
                 managers.Game.CurrentState = config.Scene.PLAY;
             }, this);
         };

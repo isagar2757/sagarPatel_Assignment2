@@ -15,9 +15,11 @@ var managers;
                             break;
                         case "cloud":
                             createjs.Sound.play("thunder");
+                            managers.Game.scoreBoard.Lives -= 1;
                             break;
                         case "bullet":
                             createjs.Sound.play("explosion");
+                            managers.Game.scoreBoard.Score += 100;
                             break;
                     }
                 }

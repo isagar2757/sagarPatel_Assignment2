@@ -1,5 +1,5 @@
 module objects {
-    export class Ocean extends createjs.Bitmap {
+    export class Galaxy extends createjs.Bitmap {
         // member variables
         private _verticalSpeed:number;
 

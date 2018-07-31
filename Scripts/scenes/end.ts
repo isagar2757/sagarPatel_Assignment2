@@ -3,7 +3,7 @@ module scenes {
         // member variables
         private _endLabel: objects.Label;
         private _backButton: objects.Button;
-        private _ocean: objects.Ocean;
+        private _galaxy: objects.Galaxy;
 
         // constructors
         constructor() {
@@ -16,7 +16,7 @@ module scenes {
 
         // public methods
         public Start():void {
-            this._ocean = new objects.Ocean();
+            this._galaxy = new objects.Galaxy();
             this._endLabel = new objects.Label("Game Over!", "60px", "Consolas", "#E07AA2", config.Screen.HALF_WIDTH, config.Screen.HALF_HEIGHT, true);
             this._backButton = new objects.Button("BackButton", config.Screen.HALF_WIDTH, config.Screen.HALF_HEIGHT+100, true);
 
@@ -24,7 +24,7 @@ module scenes {
         }
 
         public Update():void {
-            this._ocean.Update();
+            this._galaxy.Update();
         }
 
         public Reset():void {
@@ -37,7 +37,7 @@ module scenes {
 
         public Main():void {
             console.log("Started - END SCENE");
-            this.addChild(this._ocean);
+            this.addChild(this._galaxy);
             this.addChild(this._endLabel);
             this.addChild(this._backButton);
 

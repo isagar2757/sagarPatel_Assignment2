@@ -21,13 +21,13 @@ var scenes;
         // private methods
         // public methods
         End.prototype.Start = function () {
-            this._ocean = new objects.Ocean();
+            this._galaxy = new objects.Galaxy();
             this._endLabel = new objects.Label("Game Over!", "60px", "Consolas", "#E07AA2", config.Screen.HALF_WIDTH, config.Screen.HALF_HEIGHT, true);
             this._backButton = new objects.Button("BackButton", config.Screen.HALF_WIDTH, config.Screen.HALF_HEIGHT + 100, true);
             this.Main();
         };
         End.prototype.Update = function () {
-            this._ocean.Update();
+            this._galaxy.Update();
         };
         End.prototype.Reset = function () {
         };
@@ -36,7 +36,7 @@ var scenes;
         };
         End.prototype.Main = function () {
             console.log("Started - END SCENE");
-            this.addChild(this._ocean);
+            this.addChild(this._galaxy);
             this.addChild(this._endLabel);
             this.addChild(this._backButton);
             this.addChild(managers.Game.scoreBoard.HighScoreLabel);

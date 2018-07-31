@@ -2,12 +2,12 @@ module scenes {
     export class Play extends objects.Scene {
         
         // member variables
-        private _plane:objects.Plane;
-        private _ocean:objects.Ocean;
-        private _island:objects.Island;
+        private _doodle:objects.Doodle;
+        private _galaxy:objects.Galaxy;
+        private _monster:objects.Monster;
        
-        private _cloudNum:number;
-        private _clouds:objects.Cloud[];
+        private _fireBallNum:number;
+        private _fireBall:objects.FireBall[];
        
         private _bullets:objects.Bullet[];
        
@@ -21,16 +21,16 @@ module scenes {
         }
 
         // private methods
-        private _buildClouds():void {
-            for (let count = 0; count < this._cloudNum; count++) {
-                this._clouds.push(new objects.Cloud());
+        private _buildFireBall():void {
+            for (let count = 0; count < this._fireBallNum; count++) {
+                this._fireBall.push(new objects.FireBall());
                 //this._clouds[count] = new objects.Cloud();
                 
             }
         }
 
         private _buildBullets():void {
-            for (let count = 0; count < this._cloudNum; count++) {
+            for (let count = 0; count < this._fireBallNum; count++) {
                 this._bullets.push(new objects.Bullet());
                 //this._clouds[count] = new objects.Cloud();
                 
@@ -42,62 +42,45 @@ module scenes {
         // public methods
         public Start():void {
 
-            this._plane = new objects.Plane();
-            this._ocean = new objects.Ocean();
-            this._island = new objects.Island();
+            this._doodle = new objects.Doodle();
+            this._galaxy = new objects.Galaxy();
+            this._monster = new objects.Monster();
            
-            this._cloudNum = 5;
+            this._fireBallNum = 5;
             // create an empty Array List-like object of clouds
-            this._clouds = new Array<objects.Cloud>();
+            this._fireBall = new Array<objects.FireBall>();
             this._bullets = new Array<objects.Bullet>();
-            this._buildClouds();
+            this._buildFireBall();
             this._buildBullets();
            
             this.Main();
         }
 
         public Update():void {
-            this._plane.Update();
-            this._ocean.Update();
+            this._doodle.Update();
+            this._galaxy.Update();
           //  this._island.Update();
            
-            managers.Collision.check(this._plane, this._island);
+            managers.Collision.check(this._doodle, this._monster);
 
-            this._clouds.forEach(cloud => {
+            this._fireBall.forEach(cloud => {
                 cloud.Update();
-                managers.Collision.check(this._plane, cloud);
+                managers.Collision.check(this._doodle, cloud);
             });
 
-            // this._bullets.forEach(bullet => {
-            //     this._clouds.forEach(cloud => {
-                    
-            //         managers.Collision.check(cloud,bullet);
-                    
-            //         // if(bullet.isColliding){
-                        
-            //         //     this.removeChild(cloud);
-            //         //     this._clouds.push(new objects.Cloud());
-            //         //     this.removeChild(bullet);
-            //         // }
-                    
-            //     });
-            //     this.addChild(bullet);
-            //     bullet.Update();
-               
-                
-            // });
+           
 
             this._bullets.forEach(bullet => {
                 
                 bullet.Update();
-                managers.Collision.check(this._island, bullet);
+                managers.Collision.check(this._monster, bullet);
                 if(bullet.isColliding){
                         
                                 //this.removeChild(this._island);
-                               this._island.x = 0;
+                               this._monster.x = 0;
                                 this.removeChild(bullet);
                             }
-                            this._island.Update();
+                            this._monster.Update();
                             //this.addChild(this._island);
                             this.addChild(bullet);
             });
@@ -119,16 +102,16 @@ module scenes {
             console.log("Started - PLAY SCENE");
            
             // add the Ocean object to the scene
-            this.addChild(this._ocean);
+            this.addChild(this._galaxy);
 
             // add the Island object to the scene
-            this.addChild(this._island);
+            this.addChild(this._monster);
 
             // add the Plane object to the scene
-            this.addChild(this._plane);
+            this.addChild(this._doodle);
 
             // add the Cloud(s) to the scene
-            for (const cloud of this._clouds) {
+            for (const cloud of this._fireBall) {
                 this.addChild(cloud);
             }
 

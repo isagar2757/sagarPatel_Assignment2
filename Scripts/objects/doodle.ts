@@ -1,5 +1,5 @@
 module objects {
-    export class Plane extends objects.GameObject {
+    export class Doodle extends objects.GameObject {
         // member variables
 
         // constructors

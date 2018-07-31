@@ -10,16 +10,16 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Cloud = /** @class */ (function (_super) {
-        __extends(Cloud, _super);
+    var FireBall = /** @class */ (function (_super) {
+        __extends(FireBall, _super);
         // constructors
-        function Cloud() {
+        function FireBall() {
             var _this = _super.call(this, "cloud") || this;
             _this.Start();
             return _this;
         }
         // private methods
-        Cloud.prototype._checkBounds = function () {
+        FireBall.prototype._checkBounds = function () {
             // check the bottom boundary
             // if(this.y >= (config.Screen.HEIGHT + this.height)) {
             //     this.Reset();
@@ -29,23 +29,23 @@ var objects;
             }
         };
         // public methods
-        Cloud.prototype.Start = function () {
+        FireBall.prototype.Start = function () {
             this.x = config.Screen.WIDTH;
             this.Reset();
         };
-        Cloud.prototype.Update = function () {
+        FireBall.prototype.Update = function () {
             this.x -= this._horizontalSpeed;
             // this.y += this._verticalSpeed;
             this._checkBounds();
         };
-        Cloud.prototype.Reset = function () {
+        FireBall.prototype.Reset = function () {
             // this._verticalSpeed = Math.floor(Math.random() * 5) + 5;
             this._horizontalSpeed = Math.floor(Math.random() * 5) + 2;
             this.y = Math.floor(Math.random() * (config.Screen.HEIGHT - this.height)) + this.halfHeight;
             // this.x -= this.width;
         };
-        return Cloud;
+        return FireBall;
     }(objects.GameObject));
-    objects.Cloud = Cloud;
+    objects.FireBall = FireBall;
 })(objects || (objects = {}));
-//# sourceMappingURL=cloud.js.map
+//# sourceMappingURL=fireBall.js.map

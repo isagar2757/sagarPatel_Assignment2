@@ -10,16 +10,16 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Island = /** @class */ (function (_super) {
-        __extends(Island, _super);
+    var Monster = /** @class */ (function (_super) {
+        __extends(Monster, _super);
         // constructors
-        function Island() {
+        function Monster() {
             var _this = _super.call(this, "island") || this;
             _this.Start();
             return _this;
         }
         // private methods
-        Island.prototype._checkBounds = function () {
+        Monster.prototype._checkBounds = function () {
             // check the bottom boundary
             // if(this.y >= (config.Screen.HEIGHT + this.height)) {
             //     this.Reset();
@@ -29,23 +29,23 @@ var objects;
             }
         };
         // public methods
-        Island.prototype.Start = function () {
+        Monster.prototype.Start = function () {
             this.x = config.Screen.WIDTH;
             this.Reset();
         };
-        Island.prototype.Update = function () {
+        Monster.prototype.Update = function () {
             this.x -= this._horizontalSpeed;
             // this.y += this._verticalSpeed;
             this._checkBounds();
         };
-        Island.prototype.Reset = function () {
+        Monster.prototype.Reset = function () {
             // this._verticalSpeed = Math.floor(Math.random() * 5) + 5;
             this._horizontalSpeed = 0.7;
             this.y = Math.floor(Math.random() * (config.Screen.HEIGHT - this.height)) + this.halfHeight;
             // this.x -= this.width;
         };
-        return Island;
+        return Monster;
     }(objects.GameObject));
-    objects.Island = Island;
+    objects.Monster = Monster;
 })(objects || (objects = {}));
-//# sourceMappingURL=island.js.map
+//# sourceMappingURL=monster.js.map

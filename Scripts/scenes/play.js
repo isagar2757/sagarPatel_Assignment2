@@ -19,62 +19,50 @@ var scenes;
             return _this;
         }
         // private methods
-        Play.prototype._buildClouds = function () {
-            for (var count = 0; count < this._cloudNum; count++) {
-                this._clouds.push(new objects.Cloud());
+        Play.prototype._buildFireBall = function () {
+            for (var count = 0; count < this._fireBallNum; count++) {
+                this._fireBall.push(new objects.FireBall());
                 //this._clouds[count] = new objects.Cloud();
             }
         };
         Play.prototype._buildBullets = function () {
-            for (var count = 0; count < this._cloudNum; count++) {
+            for (var count = 0; count < this._fireBallNum; count++) {
                 this._bullets.push(new objects.Bullet());
                 //this._clouds[count] = new objects.Cloud();
             }
         };
         // public methods
         Play.prototype.Start = function () {
-            this._plane = new objects.Plane();
-            this._ocean = new objects.Ocean();
-            this._island = new objects.Island();
-            this._cloudNum = 5;
+            this._doodle = new objects.Doodle();
+            this._galaxy = new objects.Galaxy();
+            this._monster = new objects.Monster();
+            this._fireBallNum = 5;
             // create an empty Array List-like object of clouds
-            this._clouds = new Array();
+            this._fireBall = new Array();
             this._bullets = new Array();
-            this._buildClouds();
+            this._buildFireBall();
             this._buildBullets();
             this.Main();
         };
         Play.prototype.Update = function () {
             var _this = this;
-            this._plane.Update();
-            this._ocean.Update();
+            this._doodle.Update();
+            this._galaxy.Update();
             //  this._island.Update();
-            managers.Collision.check(this._plane, this._island);
-            this._clouds.forEach(function (cloud) {
+            managers.Collision.check(this._doodle, this._monster);
+            this._fireBall.forEach(function (cloud) {
                 cloud.Update();
-                managers.Collision.check(_this._plane, cloud);
+                managers.Collision.check(_this._doodle, cloud);
             });
-            // this._bullets.forEach(bullet => {
-            //     this._clouds.forEach(cloud => {
-            //         managers.Collision.check(cloud,bullet);
-            //         // if(bullet.isColliding){
-            //         //     this.removeChild(cloud);
-            //         //     this._clouds.push(new objects.Cloud());
-            //         //     this.removeChild(bullet);
-            //         // }
-            //     });
-            //     this.addChild(bullet);
-            //     bullet.Update();
-            // });
             this._bullets.forEach(function (bullet) {
                 bullet.Update();
-                managers.Collision.check(_this._island, bullet);
+                managers.Collision.check(_this._monster, bullet);
                 if (bullet.isColliding) {
                     //this.removeChild(this._island);
-                    _this._island.x = 0;
+                    _this._monster.x = 0;
                     _this.removeChild(bullet);
                 }
-                _this._island.Update();
+                _this._monster.Update();
                 //this.addChild(this._island);
                 _this.addChild(bullet);
             });
@@ -87,13 +75,13 @@ var scenes;
         Play.prototype.Main = function () {
             console.log("Started - PLAY SCENE");
             // add the Ocean object to the scene
-            this.addChild(this._ocean);
+            this.addChild(this._galaxy);
             // add the Island object to the scene
-            this.addChild(this._island);
+            this.addChild(this._monster);
             // add the Plane object to the scene
-            this.addChild(this._plane);
+            this.addChild(this._doodle);
             // add the Cloud(s) to the scene
-            for (var _i = 0, _a = this._clouds; _i < _a.length; _i++) {
+            for (var _i = 0, _a = this._fireBall; _i < _a.length; _i++) {
                 var cloud = _a[_i];
                 this.addChild(cloud);
             }

@@ -21,7 +21,7 @@ var scenes;
         // private methods
         // public methods
         Instruction.prototype.Start = function () {
-            this._ocean = new objects.Ocean();
+            this._galaxy = new objects.Galaxy();
             this.line1 = new objects.Label("Don't touch the enemies", "40px", "Consolas", "#E07AA2", config.Screen.HALF_WIDTH, config.Screen.HALF_HEIGHT - 200, true);
             this.line2 = new objects.Label("Move Your Character with Mouse", "40px", "Consolas", "#E07AA2", config.Screen.HALF_WIDTH, config.Screen.HALF_HEIGHT - 100, true);
             this.line3 = new objects.Label("You have 5 Lives", "40px", "Consolas", "#E07AA2", config.Screen.HALF_WIDTH, config.Screen.HALF_HEIGHT, true);
@@ -29,7 +29,7 @@ var scenes;
             this.Main();
         };
         Instruction.prototype.Update = function () {
-            this._ocean.Update();
+            this._galaxy.Update();
         };
         Instruction.prototype.Reset = function () {
         };
@@ -38,7 +38,7 @@ var scenes;
         };
         Instruction.prototype.Main = function () {
             console.log("Instruction - INST SCENE");
-            this.addChild(this._ocean);
+            this.addChild(this._galaxy);
             this.addChild(this.line1);
             this.addChild(this.line2);
             this.addChild(this.line3);

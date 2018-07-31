@@ -10,17 +10,17 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Plane = /** @class */ (function (_super) {
-        __extends(Plane, _super);
+    var Doodle = /** @class */ (function (_super) {
+        __extends(Doodle, _super);
         // member variables
         // constructors
-        function Plane() {
+        function Doodle() {
             var _this = _super.call(this, "plane") || this;
             _this.Start();
             return _this;
         }
         // private methods
-        Plane.prototype._checkBounds = function () {
+        Doodle.prototype._checkBounds = function () {
             // check the right boundary
             if (this.x > (config.Screen.WIDTH - this.halfWidth)) {
                 this.x = config.Screen.WIDTH - this.halfWidth;
@@ -31,19 +31,19 @@ var objects;
             }
         };
         // public methods
-        Plane.prototype.Start = function () {
+        Doodle.prototype.Start = function () {
             this.regX = this.halfWidth;
             this.regY = this.halfHeight;
             this.y = 430;
         };
-        Plane.prototype.Update = function () {
+        Doodle.prototype.Update = function () {
             this.y = managers.Game.Stage.mouseY;
             this._checkBounds();
         };
-        Plane.prototype.Reset = function () {
+        Doodle.prototype.Reset = function () {
         };
-        return Plane;
+        return Doodle;
     }(objects.GameObject));
-    objects.Plane = Plane;
+    objects.Doodle = Doodle;
 })(objects || (objects = {}));
-//# sourceMappingURL=plane.js.map
+//# sourceMappingURL=doodle.js.map

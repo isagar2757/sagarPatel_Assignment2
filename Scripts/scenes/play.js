@@ -48,31 +48,35 @@ var scenes;
             var _this = this;
             this._plane.Update();
             this._ocean.Update();
-            this._island.Update();
+            //  this._island.Update();
             managers.Collision.check(this._plane, this._island);
             this._clouds.forEach(function (cloud) {
                 cloud.Update();
                 managers.Collision.check(_this._plane, cloud);
             });
+            // this._bullets.forEach(bullet => {
+            //     this._clouds.forEach(cloud => {
+            //         managers.Collision.check(cloud,bullet);
+            //         // if(bullet.isColliding){
+            //         //     this.removeChild(cloud);
+            //         //     this._clouds.push(new objects.Cloud());
+            //         //     this.removeChild(bullet);
+            //         // }
+            //     });
+            //     this.addChild(bullet);
+            //     bullet.Update();
+            // });
             this._bullets.forEach(function (bullet) {
-                _this._clouds.forEach(function (cloud) {
-                    //cloud.Update();
-                    managers.Collision.check(cloud, bullet);
-                    if (bullet.isColliding) {
-                        _this.removeChild(cloud);
-                        // this.addChild(cloud);
-                        _this.removeChild(bullet);
-                    }
-                });
                 bullet.Update();
+                managers.Collision.check(_this._island, bullet);
                 if (bullet.isColliding) {
-                    //this.removeChild(cloud);
-                    for (var _i = 0, _a = _this._clouds; _i < _a.length; _i++) {
-                        var cloud = _a[_i];
-                        _this.addChild(cloud);
-                    }
-                    _this.addChild(bullet);
+                    //this.removeChild(this._island);
+                    _this._island.x = 0;
+                    _this.removeChild(bullet);
                 }
+                _this._island.Update();
+                //this.addChild(this._island);
+                _this.addChild(bullet);
             });
         };
         Play.prototype.Reset = function () {

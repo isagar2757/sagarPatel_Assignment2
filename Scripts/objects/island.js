@@ -21,23 +21,28 @@ var objects;
         // private methods
         Island.prototype._checkBounds = function () {
             // check the bottom boundary
-            // if(this.x <= (config.Screen.WIDTH + this.width)) {
-            if (this.x <= (this.width)) {
-                this.Reset();
+            // if(this.y >= (config.Screen.HEIGHT + this.height)) {
+            //     this.Reset();
+            // }
+            if (this.x <= (0)) {
+                this.Start();
             }
         };
         // public methods
         Island.prototype.Start = function () {
-            this._verticalSpeed = 5; // the island will move down 5ppf
+            this.x = config.Screen.WIDTH;
             this.Reset();
         };
         Island.prototype.Update = function () {
-            this.x += this._verticalSpeed;
+            this.x -= this._horizontalSpeed;
+            // this.y += this._verticalSpeed;
             this._checkBounds();
         };
         Island.prototype.Reset = function () {
-            this.y = Math.floor(Math.random() * (config.Screen.WIDTH - this.width)) + this.halfWidth;
-            this.x = -this.height;
+            // this._verticalSpeed = Math.floor(Math.random() * 5) + 5;
+            this._horizontalSpeed = 0.7;
+            this.y = Math.floor(Math.random() * (config.Screen.HEIGHT - this.height)) + this.halfHeight;
+            // this.x -= this.width;
         };
         return Island;
     }(objects.GameObject));

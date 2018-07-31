@@ -8,6 +8,7 @@ module scenes {
        
         private _cloudNum:number;
         private _clouds:objects.Cloud[];
+        private _cloud:objects.Cloud;
         private _bullets:objects.Bullet[];
       
 
@@ -57,7 +58,7 @@ module scenes {
         public Update():void {
             this._plane.Update();
             this._ocean.Update();
-            this._island.Update();
+          //  this._island.Update();
            
             managers.Collision.check(this._plane, this._island);
 
@@ -66,27 +67,38 @@ module scenes {
                 managers.Collision.check(this._plane, cloud);
             });
 
-            this._bullets.forEach(bullet => {
-                this._clouds.forEach(cloud => {
-                    //cloud.Update();
-                    managers.Collision.check(cloud,bullet);
+            // this._bullets.forEach(bullet => {
+            //     this._clouds.forEach(cloud => {
                     
-                    if(bullet.isColliding){
-                        this.removeChild(cloud);
-                       // this.addChild(cloud);
-                        this.removeChild(bullet);
-                    }
+            //         managers.Collision.check(cloud,bullet);
                     
-                });
-                bullet.Update();
-                if(bullet.isColliding){
-                    //this.removeChild(cloud);
-                    for (const cloud of this._clouds) {
-                        this.addChild(cloud);
-                    }
-                   this.addChild(bullet);
-                }
+            //         // if(bullet.isColliding){
+                        
+            //         //     this.removeChild(cloud);
+            //         //     this._clouds.push(new objects.Cloud());
+            //         //     this.removeChild(bullet);
+            //         // }
+                    
+            //     });
+            //     this.addChild(bullet);
+            //     bullet.Update();
+               
                 
+            // });
+
+            this._bullets.forEach(bullet => {
+                
+                bullet.Update();
+                managers.Collision.check(this._island, bullet);
+                if(bullet.isColliding){
+                        
+                                //this.removeChild(this._island);
+                               this._island.x = 0;
+                                this.removeChild(bullet);
+                            }
+                            this._island.Update();
+                            //this.addChild(this._island);
+                            this.addChild(bullet);
             });
 
            

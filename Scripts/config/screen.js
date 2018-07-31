@@ -5,7 +5,7 @@ var config;
         }
         Screen.WIDTH = 800;
         Screen.HEIGHT = 480;
-        Screen.HALF_WIDTH = 320;
+        Screen.HALF_WIDTH = 400;
         Screen.HALF_HEIGHT = 240;
         return Screen;
     }());

@@ -7,3 +7,10 @@ body {
     background-color: white;
     border-radius: 1%;
 }
+@font-face {
+    font-family: 'Dock51';
+    src: url('/Assets/fonts/Dock51.woff2') format('woff2'),
+         url('/Assets/fonts/Dock51.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
